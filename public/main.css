@@ -1,0 +1,17 @@
+.main-poll {
+    margin-top: 30px;
+}
+
+.main-poll a {
+    border-radius: 0px;
+}
+
+.main-poll a:first-child {
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+
+.main-poll a:last-child {
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
