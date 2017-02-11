@@ -1,12 +1,12 @@
 'use strict';
 
 var path = process.cwd();
-var ClickHandler = require(path + '/app/controllers/clickHandler.server.js');
 var controller = require('../controllers/pollController.js');
 
 module.exports = function (app, passport) {
 
   if (process.env.RELOAD) {
+    // reload the database with fresh data
     controller.reload();
   }
 
@@ -17,8 +17,6 @@ module.exports = function (app, passport) {
       res.redirect('/');
     }
   }
-
-  var clickHandler = new ClickHandler();
 
   app.get('/', (req, res) => {
     var auth;

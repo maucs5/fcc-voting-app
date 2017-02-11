@@ -1,0 +1,27 @@
+* The first simple app
+I used the =clementinejs-fcc= repo, modify it to my liking, and build the
+=voting-app=. It is a great learning experience, and this is the small
+documentation of it.
+** Authentication
+Using =express-session=, =passport= and =passport-github= to create simple
+authentication.
+
+- =passport= is used at the configuration site, ~app.use(passport.initialize())~ etc
+- =passport-github= is used in the routing part, and to specify the strategy (located at =app/config=)
+  - Additionally, a model =Users= is used to store information of logged
+    users, and can be called from =req.user=
+- The documentations for passport is thick
+** Models and Controllers
+Using =mongoose=, the models at =app/models= are used like
+ORM. =app/controllers= is to store the controllers
+** The actual app
+Located at =app/routes=, the bulk of the applications are here.
+
+Notice that the file instead exports it, with a fuction that receives two
+arguments
+- app :: The express server
+- passport :: The passport from ~require('passport')~
+** Templates
+Templates with =pug=
+** server.js
+The file to combine all seemingly separate configurations and applications into one

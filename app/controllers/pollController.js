@@ -1,5 +1,4 @@
-var a = require('../models/polls');
-var Poll = a.poll;
+var Poll = require('../models/polls').poll
 
 module.exports = {
   reload: function() {
@@ -12,15 +11,15 @@ module.exports = {
 	  'yes': 9,
 	  'no': 4
 	}
-      });
+      })
       var b = new Poll({
 	name: 'Another one of those polls',
-	author: '9999',
+	author: '9999', // random owner
 	options: {
 	  'Really?': 3,
 	  'Believe it': 0
 	}
-      });
+      })
       var c = new Poll({
 	name: 'How are you doing?',
 	author: '1415703',
@@ -28,48 +27,48 @@ module.exports = {
 	  'I am fine': 5,
 	  'Sunny day': 100
 	}
-      });
+      })
       Poll.insertMany([a,b,c], (err, docs) => {
 	console.log("Database reloaded");
-      });
-    });
+      })
+    })
   },
 
   list_all: function(cb) {
     Poll.find({}, (err, polls) => {
       var data = polls.reverse().map((v) => {
-	return v.name;
+	return v.name
       })
-      var data = polls;
-      cb(data);
+      var data = polls
+      cb(data)
     });
   },
 
   list_one: function(id, cb) {
     Poll.findOne({_id: id}, (err, poll) => {
-      cb(poll);
-    });
+      cb(poll)
+    })
   },
 
   delete_one: function(id, user, cb) {
     Poll.findOne({_id: id}, (err, poll) => {
       if (poll.author === user)
 	Poll.remove({_id: id}, (err, poll) => {
-	  cb();
-	});
-    });
+	  cb()
+	})
+    })
   },
 
   add_vote: function(id, fields, cb) {
     Poll.findOne({_id: id}, (err, poll) => {
-      var o = poll.options;
-      if (typeof o[fields.select] !== 'undefined') o[fields.select]++;
-      else if (typeof o[fields.custom] !== 'undefined') o[fields.custom]++;
-      else o[fields.custom] = 1;
+      var o = poll.options
+      if (typeof o[fields.select] !== 'undefined') o[fields.select]++
+      else if (typeof o[fields.custom] !== 'undefined') o[fields.custom]++
+      else o[fields.custom] = 1
       poll.update({$set: {options: o}}, (err, p) => {
-	cb();
-      });
-    });
+	cb()
+      })
+    })
   },
 
   user_polls: function(user, cb) {

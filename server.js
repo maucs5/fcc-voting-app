@@ -1,7 +1,5 @@
 'use strict';
 
-require('events').EventEmitter.defaultMaxListeners = 0
-
 var express = require('express');
 var routes = require('./app/routes/index.js');
 var mongoose = require('mongoose');
@@ -16,9 +14,7 @@ require('./app/config/passport')(passport);
 mongoose.connect(process.env.MONGO_URI);
 mongoose.Promise = global.Promise;
 
-app.use('/controllers', express.static(process.cwd() + '/app/controllers'));
 app.use('/public', express.static(process.cwd() + '/public'));
-app.use('/common', express.static(process.cwd() + '/app/common'));
 
 app.set('view engine', 'pug');
 
