@@ -53,9 +53,8 @@ $(document).ready(function() {
 	return alert('Please name the option');
       }
     };
-    $.ajax({
+    $.post({
       url: window.location.href,
-      method: 'POST',
       data: $(this).serialize()
     }).done(function(msg) {
       location.reload(true);
