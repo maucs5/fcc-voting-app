@@ -5,6 +5,7 @@ html
     link(href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css", rel="stylesheet", integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u", crossorigin="anonymous")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js", integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa", crossorigin="anonymous")
     link(href="/public/main.css", rel='stylesheet')
+    script(src="/public/all.js")
   body(class='container')
 
     nav(class='navbar navbar-default')
@@ -13,7 +14,7 @@ html
           li: a(href='/') The Voting App
         ul(class='nav navbar-nav navbar-right')
           if auth
-            li(class='active'): a(href='/mypolls') My Polls
+            li: a(href='/mypolls') My Polls
             li: a(href='/newpoll') New Poll
             li(class='dropdown')
               a(href='#', class='dropdown-toggle', data-toggle='dropdown', role='button')= name
@@ -26,7 +27,4 @@ html
 
     div(class='jumbotron')
       h1(class='text-center') The Voting App
-      div(class='row main-poll')
-        each kw in data
-          a(href='/polls/'+kw._id, class='col-xs-12 text-center btn btn-default')
-            =kw.name
+      block content
